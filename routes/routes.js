@@ -24,8 +24,7 @@ app.get('/sortdesc/:field', (req, res) => {
 app.post('/', (req, res) => {
   const { first, last, age, email } = req.body;
   repository.create(first, last, age, email).then((User) => {
-    res.json(User);
-    res.end();
+     res.redirect('/user');;
   }).catch((error) => console.log(error));
 });
 
