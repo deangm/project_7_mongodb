@@ -1,15 +1,18 @@
 
 
+
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-//const config = require('./config/config');
+const config = require('./config/config');
 const routes = require('./routes/routes');
 const app = express();
-const PORT = process.env.PORT; //config.PORT
-const DB = process.env.DATABASE_URL; //config.DB
+const PORT = process.env.PORT || config.PORT
+const DB = process.env.DATABASE_URL || config.DB
 const repository = require('./repos/userRepo');
+
+
 
 mongoose.connect(DB, {
     useNewUrlParser: true,
@@ -26,6 +29,6 @@ app.get('/', (req, res) =>{
     res.send('user app');
 })
 
-app.listen(8080, ()=>{
-    console.log(`app server is listening on port: 8080`);
+app.listen(PORT, ()=>{
+    console.log(`app server is listening on port: ${PORT}`);
 }); 
